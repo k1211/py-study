@@ -15,6 +15,8 @@ class Line(object):
     def slope(self):
         return float((self.y1 - self.y2)) / (self.x1 - self.x2)
 
+# Problem 2
+# Fill in the class
 
 class Cylinder(object):
         def __init__(self, height=1, radius=1):
