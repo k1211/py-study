@@ -22,6 +22,7 @@ class Player():
         self.hand = []
         self.money = cash
         self.on_table = 0
+        self.ans = ''
 
     def gamble(self, n):
         self.money -= n
@@ -33,23 +34,22 @@ class Player():
     def hit(self):
         self.hand.append(cards[random.randint(0,11)])
 
-    def add_money(self, prize):
-        self.money += prize
-
-class Game(object):
-
     def win(self):
         print "Player won!"
-        Player.money += +1.5*Player.on_table
-        return Player.money
+        self.money = self.money +  1.5*self.on_table
+        print "Player's money: " , self.money
 
     def lose(self):
         print "Casino won!"
-        Player.money -= Player.on_table
-        return Player.money
+        self.money -= self.on_table
+        print "Player's money: ", self.money
+
+class Game(object):
+    def __init__(self):
+        self.turn = ''
 
     def cards_evaluation(self, two_cards):
-        result = 0
+
         if A in two_cards:
             result = sum(two_cards) + 11
             if result > 21:
@@ -60,20 +60,29 @@ class Game(object):
 
 cash = int(raw_input("How much money do you come with: ").strip())
 baton = int(raw_input("How much money do you want to gamble: ").strip())
+
 player = Player(cash)
-casino = Player(cash=100000000)
 game = Game()
+
+player.gamble(baton)
 
 hej = True
 while hej:
+    # turn = game.whose_turn()
     print "You have on your hand: ", player.hand
 
     if len(player.hand) == 2:
-        eval = game.cards_evaluation(player.hand)
-        if eval > 21:
-            game.lose()
+        eval_player = game.cards_evaluation(player.hand)
+
+        if eval_player > 21:
+            print "Player's points: ", eval_player
+            player.lose()
+
         else:
-            game.win()
+            print "Player's points: ", eval_player
+            player.win()
+
+        break
 
     else:
         ans = raw_input("What do you do? [hit/stand/bust]")
