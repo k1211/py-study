@@ -14,7 +14,7 @@ import random
 J, Q, K = 10,10,10
 A = 0
 
-cards = [2,3,4,5,6,7,8,9,J,Q,K,A]
+cards = [2,3,4,5,6,7,8,9,J,Q,K,'A']
 
 class Player():
 
@@ -50,7 +50,7 @@ class Game(object):
 
     def cards_evaluation(self, two_cards):
 
-        if A in two_cards:
+        if 'A' in two_cards:
             result = sum(two_cards) + 11
             if result > 21:
                 result -= 10
