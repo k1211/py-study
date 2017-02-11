@@ -40,26 +40,23 @@ def print_phonebook(diki):
     for i in user_info:
         print i + ': ' + diki[i]
 
+def edit_data(s):
+    new_value = raw_input(str(s).capitalize() + ": ")
+    full_phonebook[s] = new_value
+    os.system('cls')
+    return full_phonebook[s]
+
 while True:
     ans = raw_input("Do you want to change anything? [name/surname/address/phone/no]")
 
     if ans == 'no':
         break
     else:
-        if ans == 'name':
-            name = raw_input("Name: ")
-            os.system('cls')
-        elif ans == 'surname':
-            surname = raw_input("Surname: ")
-            os.system('cls')
-        elif ans == 'address':
-            address = raw_input("Address: ")
-            os.system('cls')
-        elif ans == 'phone':
-            phone = raw_input("Phone number: ")
-            os.system('cls')
-        else:
-            continue
+        for element in user_info:
+            if ans.lower() in element.lower():
+                edit_data(ans)
+            else:
+                continue
 
 print_phonebook(full_phonebook)
 
