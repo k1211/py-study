@@ -13,6 +13,7 @@
 import os
 
 def ask_user():
+    os.system('cls')
     name = raw_input("Name: ")
     os.system('cls')
     surname = raw_input("Surname: ")
@@ -41,21 +42,25 @@ def print_phonebook(diki):
         print i + ': ' + diki[i]
 
 def edit_data(s):
-    new_value = raw_input(str(s).capitalize() + ": ")
-    full_phonebook[s] = new_value
+    temp = s.capitalize()
+    new_value = raw_input(str(temp).capitalize() + ": ")
+    full_phonebook[temp] = new_value
     os.system('cls')
-    return full_phonebook[s]
+    return full_phonebook
 
 while True:
     ans = raw_input("Do you want to change anything? [name/surname/address/phone/no]")
 
     if ans == 'no':
+        os.system('cls')
         break
     else:
         for element in user_info:
-            if ans.lower() in element.lower():
+            if ans.lower() == element.lower():
                 edit_data(ans)
+                os.system('cls')
             else:
+                os.system('cls')
                 continue
 
 print_phonebook(full_phonebook)
