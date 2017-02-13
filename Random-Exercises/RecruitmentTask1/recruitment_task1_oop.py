@@ -49,7 +49,6 @@ class User():
 class Wizard(User):
     def __init__(self):
         User.__init__(self)
-        # self.phonebook = {}
 
     def print_phonebook(self, book):
         for i in User.user_info:
@@ -57,10 +56,10 @@ class Wizard(User):
 
     def edit_data(self, s):
         the_key = s.capitalize()
-        new_value = raw_input(str(the_key).capitalize() + ": ")
-        self.phonebook[the_key] = new_value
+        new_value = raw_input(the_key + ": ")
+        full_phonebook[the_key] = new_value
         cls()
-        return self.phonebook
+        return full_phonebook
 
 user = User()
 dane = user.ask_user()
@@ -80,8 +79,7 @@ def gra():
         else:
             for key in full_phonebook:
                 if ans.lower() == key.lower():
-                    full_phonebook_edit = wizard.edit_data(ans)
-                    return full_phonebook_edit
+                    wizard.edit_data(ans)
                     cls()
                 else:
                     cls()
